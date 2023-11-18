@@ -8,7 +8,7 @@ export default function Routers() {
     
        <Routes>
 
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
 
             <Route path="/registro" element={<Register />} />
         </Routes>

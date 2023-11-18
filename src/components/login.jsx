@@ -3,21 +3,36 @@
 import { Link, Router, Routes } from "react-router-dom";
 import registro from '../pages/registro'
 
+
 const RoutRegister = registro;
 
 
 
 export default function Login() {
 
-  // const { loginVerify } = loginContext();
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  //  const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   loginVerify(username, password, setError);
-  // };
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // Aquí debes agregar la lógica de inicio de sesión, por ejemplo, usando una función de autenticación o API.
+    // Puedes llamar a una función como LoginAuth0(email, password) si estás usando Auth0.
+
+    try {
+      // Aquí puedes manejar la lógica de inicio de sesión. Por ejemplo, enviar una solicitud a tu servidor.
+      console.log("Iniciar sesión con:", email, password);
+
+      // Después de una exitosa autenticación, puedes redirigir al usuario a otra página.
+      // history.push('/dashboard'); // Asegúrate de tener acceso a history desde tus props o mediante el uso de withRouter.
+
+    } catch (error) {
+      // Manejar errores de inicio de sesión, como mostrar un mensaje al usuario.
+      console.error("Error al iniciar sesión:", error.message);
+    }
+  };
+
+
 
   return (
     <>
@@ -31,7 +46,7 @@ export default function Login() {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Iogin - Ingresa a tu cuenta!
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleLogin}>
                 <div>
                   <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                   <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
