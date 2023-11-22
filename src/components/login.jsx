@@ -1,7 +1,8 @@
-//import React, { useState } from 'react';
+import React, { useState } from 'react';
 //import { loginContext } from "../contexts/login";
 import { Link, Router, Routes } from "react-router-dom";
 import registro from '../pages/registro'
+import FooterA from '../components/footer'
 
 
 const RoutRegister = registro;
@@ -10,27 +11,43 @@ const RoutRegister = registro;
 
 export default function Login() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Aquí debes agregar la lógica de inicio de sesión, por ejemplo, usando una función de autenticación o API.
-    // Puedes llamar a una función como LoginAuth0(email, password) si estás usando Auth0.
-
+  
     try {
-      // Aquí puedes manejar la lógica de inicio de sesión. Por ejemplo, enviar una solicitud a tu servidor.
-      console.log("Iniciar sesión con:", email, password);
-
-      // Después de una exitosa autenticación, puedes redirigir al usuario a otra página.
-      // history.push('/dashboard'); // Asegúrate de tener acceso a history desde tus props o mediante el uso de withRouter.
-
+      // Crear un objeto con los datos del usuario
+      const userData = {
+        email: email,
+        password: password,
+      };
+  
+      // Realizar la solicitud a la API usando fetch
+      const response = await fetch('http://localhost:3006', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+  
+      // Verificar si la respuesta es exitosa (código 2xx)
+      if (response.ok) {
+        // Aquí puedes manejar la lógica después de una exitosa autenticación.
+        console.log('Inicio de sesión exitoso');
+  
+        // Por ejemplo, podrías redirigir al usuario a otra página después de una autenticación exitosa.
+        // history.push('/dashboard'); // Asegúrate de tener acceso a history desde tus props o mediante el uso de withRouter.
+      } else {
+        // Si la respuesta no es exitosa, manejar el error
+        const errorData = await response.json();
+        console.error('Error al iniciar sesión:', errorData.message);
+      }
     } catch (error) {
-      // Manejar errores de inicio de sesión, como mostrar un mensaje al usuario.
-      console.error("Error al iniciar sesión:", error.message);
+      // Manejar otros errores, como problemas de red, etc.
+      console.error('Error al iniciar sesión:', error.message);
     }
   };
+  
 
 
 
@@ -74,6 +91,7 @@ export default function Login() {
             </div>
           </div>
         </div>
+        <FooterA></FooterA>
       </section>
     </>
   );

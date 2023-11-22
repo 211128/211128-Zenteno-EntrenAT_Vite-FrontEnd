@@ -8,11 +8,11 @@ function App() {
 
   return (
     <>  
-        <Auth0Provider domain='dev-21v60mywhiqtiyow.us.auth0.com' clientId='QMdvx9sEEyvOlZhNkz2lGpqvsoBr8AWK'>
+        
         
           <Routers />    
 
-        </Auth0Provider>
+      
     </>
   )
 }

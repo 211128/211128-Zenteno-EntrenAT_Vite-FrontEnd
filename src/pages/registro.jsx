@@ -1,6 +1,8 @@
 //import React, { useState } from 'react';
 //import { loginContext } from "../contexts/login";
 
+import FooterA from "../components/footer";
+
 export default function Register() {
     // const { loginVerify } = loginContext();
     // const [username, setUsername] = useState('');
@@ -115,7 +117,9 @@ export default function Register() {
                         </div>
                     </div>
                 </div>
+                 <FooterA></FooterA>
             </section>
+           
         </>
     );
 }
