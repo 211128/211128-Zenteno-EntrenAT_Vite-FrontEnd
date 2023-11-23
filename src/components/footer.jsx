@@ -1,4 +1,7 @@
 import React from 'react'
+import AvisoPrivacidad from '../pages/policy';
+import { Link, Router, Routes } from "react-router-dom";
+
 
 function FooterA() {
     return (
@@ -10,10 +13,10 @@ function FooterA() {
                     </span>
                     <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
                         <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">About</a>
+                            <a href="#" className="hover:underline me-4 md:me-6"><Link to="/policy">quienes somos</Link></a>
                         </li>
                         <li>
-                            <a href="#" className="hover:underline me-4 md:me-6">Privacy Policy</a>
+                            <a className="hover:underline me-4 md:me-6"><Link to="/policy">Políticas de privacidad</Link></a>
                         </li>
                         <li>
                             <a href="#" className="hover:underline me-4 md:me-6">Licensing</a>

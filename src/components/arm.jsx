@@ -21,25 +21,11 @@ const Arm = () => {
   return (
     <>
     
-      {/* Drawer init and show */}
-      <div className="bg-[#101820] flex flex-col items-center w-full">
-        
-            <div className="bg-[#101820] w-[15%] m-5 mt-24">
-              <div className="relative h-[200px] bg-[#273a4c] rounded-xl">
-                <img
-                  className="absolute md:w-[150px] md:h-[150px] left-10 object-cover cursor-pointer"
-                  alt=""
-                  src={arm}
-                  onClick={handleDrawerToggle} 
+    <div className="flex flex-col items-center pb-5 bg-[#273a4c] ">
+                <img className="w-24 h-24 mb-3 rounded-lm shadow-lg mt-5 " src={arm} onClick={handleDrawerToggle} alt="Bonnie image" />
+                <h5 className="mb-1 text-xl font-medium text-gray-600 dark:text-white shadow-xl">Brazos</h5>
                 
-                />
-                <div className="absolute bottom-0 w-full font-bold text-[#8e8e8e] text-[8px] md:text-[32px] text-center tracking-[0] leading-[normal]">
-                  <p>Brazos</p>
-                </div>
-              </div>
             </div>
-        
-        </div>
      
 
       {/* Drawer component */}

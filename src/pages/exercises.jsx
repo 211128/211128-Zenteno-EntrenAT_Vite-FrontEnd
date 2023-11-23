@@ -9,7 +9,6 @@ import FooterA from '../components/footer'
 function Exercises() {
   return (
     <>
-    
         <Muscles></Muscles>
         <Back></Back>
         <Abdominales></Abdominales>
