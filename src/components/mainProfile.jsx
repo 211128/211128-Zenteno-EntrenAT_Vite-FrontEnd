@@ -18,28 +18,48 @@ const ProfileCard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3006/api/v1/7');
-
+        // Obtener la ID del usuario desde el localStorage
+        const storedUser = localStorage.getItem('authenticatedUser');
+  
+        // Verificar si hay un usuario almacenado en el localStorage
+        if (!storedUser) {
+          // Manejar el caso en el que no hay usuario autenticado
+          console.error('No hay usuario autenticado');
+          return;
+        }
+  
+        // Parsear el usuario almacenado en el localStorage
+        const parsedUser = JSON.parse(storedUser);
+        console.log(parsedUser.data.id)
+        
+  
+        // Añadir la ID del usuario a la URL
+        const url = `http://localhost:3006/api/v1/${parsedUser.data.id}`;
+  
+        // Realizar la solicitud GET utilizando la URL actualizada
+        const response = await fetch(url);
+  
+        // Resto del código para manejar la respuesta
         if (!response.ok) {
           throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
         }
-
+  
         const data = await response.json();
         console.log('Datos recuperados:', data);
         setUserData(data);
       } catch (error) {
         console.error('Error al obtener datos:', error);
-
+  
         if (error instanceof Error && error.response) {
           const responseText = await error.response.text();
           console.log('Respuesta del servidor:', responseText);
         }
       }
     };
-
+  
     fetchData();
   }, []);
-
+  
   return (
     <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
       <div className="rounded-t-lg h-32 overflow-hidden">
