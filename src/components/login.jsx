@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import useAuth from '../hooks/UserAuth';  
 import FooterA from '../components/footer';
 import AlertLogin from './alerts/wronglogin';
 import Success from './alerts/succes';
-import { useForm } from '../hooks/loginHook';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
-  const navigate = useNavigate(); // Mueve esto al nivel superior
-
-  const { values, onInputChange } = useForm({
-    name: '',
-    email: '',
-    password: '',
-  });
+  const { setAuthenticatedUser } = useAuth();  // Obtener la función setAuthenticatedUser del hook
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setError('Por favor, complete todos los campos.');
+      return;
+    }
 
     try {
       const response = await fetch('http://localhost:3006/api/v1/login', {
@@ -26,38 +26,32 @@ export default function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
+        body: JSON.stringify({ email, password }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Login exitoso. Token:', data.token);
-
-        setSuccess(true);
-
-        // Redirige a la ruta protegida después del inicio de sesión
-        navigate('/muscles', {
-          replace: true,
-          state: {
-            logged: true,
-            name: data.name,
-          },
-        });
-      } else {
-        const errorData = await response.json();
-        console.error('Error en la autenticación:', errorData);
-        setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      if (!response.ok) {
+        throw new Error('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
       }
+
+      const user = await response.json();
+
+      // Guardar el usuario en el almacenamiento local y actualizar el estado global
+      localStorage.setItem('authenticatedUser', JSON.stringify(user));
+      setAuthenticatedUser(user);
+      console.log(localStorage)
+      console.log(user)
+
+      setSuccess(true);
+      setError(null);
     } catch (error) {
-      console.error('Error durante la solicitud de login:', error.message);
-      setError('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo.');
+      setError(error.message);
+      setSuccess(false);
     }
   };
-
-
+  
+  if (success) {
+    return <Navigate to="/muscles" />;
+  }
 
 
   return (

@@ -5,10 +5,12 @@ import Abdominales from '../components/abdominales'
 import Arm from '../components/arm'
 import Leg from '../components/leg'
 import FooterA from '../components/footer'
+import NavbarC from '../components/navbar'
 
 function Exercises() {
   return (
     <>
+        <NavbarC></NavbarC>
         <Muscles></Muscles>
         <Back></Back>
         <Abdominales></Abdominales>

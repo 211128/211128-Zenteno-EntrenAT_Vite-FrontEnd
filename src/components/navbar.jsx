@@ -1,39 +1,22 @@
+
 import React from 'react';
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-// import '../contexts/Navbar'
+import { Button, Navbar } from 'flowbite-react';
 
-function Navbar() {
+export default function NavbarC() {
   return (
+    <Navbar fluid rounded>
+      <Navbar.Brand >
+        <span className="self-center text-xl font-semibold dark:text-white mx-10"> EntrenAT</span>
+      </Navbar.Brand>
      
-      <>
-        <input type="checkbox" id="active" />
-        <label htmlFor="active" className="menu-btn">
-          <i className="fas fa-bars"></i>
-        </label>
-
-        <div className="wrapper">
-          <ul>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Gallery</a>
-            </li>
-            <li>
-              <a href="#">Feedback</a>
-            </li>
-          </ul>
-        </div>
+        
+        <Navbar.Toggle />
       
-      </>
-    
+      <Navbar.Collapse>
+        <Navbar.Link href="/perfil" className='mx-5'>Perfil</Navbar.Link>
+        <Navbar.Link href="#" className='mb-20 mx-5'>Buscar GymBro!</Navbar.Link>
+        <button> <span className=" text-ml font-semibold dark:text-white ">Salir</span></button>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
-
-export default Navbar;

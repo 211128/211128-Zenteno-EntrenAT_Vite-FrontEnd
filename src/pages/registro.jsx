@@ -4,13 +4,14 @@ import FooterA from "../components/footer";
 import AlertPassword from "../components/alerts/wrongpassword";
 import AlertData from '../components/alerts/wrongdata';
 import AlertOk from '../components/alerts/succes';
+import { Navigate } from 'react-router-dom';
 
 
 export default function Register() {
     const [formData, setFormData] = useState({
         email: '',
         name: '',
-        sex: '',
+        sex: 'male',
         height: 0,
         weight: 0,
         password: '',
@@ -21,6 +22,7 @@ export default function Register() {
     const [dataError, setDataError] = useState(true);
     const [passwordError, setPasswordError] = useState('');
     const [success, setSuccess] = useState(false);
+    
 
     const handleChange = (e) => {
         setFormData({
@@ -62,11 +64,13 @@ export default function Register() {
         // Eliminar confirmPassword del objeto formData
         const { confirmPassword, ...requestData } = formData;
 
+
         try {
             console.log('Form Data:', requestData);
 
             const response = await fetch('http://localhost:3006/api/v1/register/', {
                 method: 'POST',
+                type: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -77,6 +81,7 @@ export default function Register() {
                 console.log('Usuario registrado exitosamente.');
                 setSuccess(true); 
                 // Puedes redirigir o realizar otras acciones después de un registro exitoso
+              
             } else {
                 console.error('Error al registrar el usuario:', response.statusText);
             }
@@ -84,6 +89,10 @@ export default function Register() {
             console.error('Error de red:', error);
         }
     };
+
+    if (success) {
+        return <Navigate to="/" />;
+      }
 
 
     return (
