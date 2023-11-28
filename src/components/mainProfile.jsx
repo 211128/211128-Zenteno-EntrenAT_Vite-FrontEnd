@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import profileicon from '../assets/profileicon.png';
 import icon from '../assets/background/icon.jpg';
+import { Link } from 'react-router-dom';
 
 const ProfileCard = () => {
   const [userData, setUserData] = useState({
@@ -30,7 +31,6 @@ const ProfileCard = () => {
   
         // Parsear el usuario almacenado en el localStorage
         const parsedUser = JSON.parse(storedUser);
-        console.log(parsedUser.data.id)
         
   
         // Añadir la ID del usuario a la URL
@@ -86,6 +86,10 @@ const ProfileCard = () => {
             </svg>
             <div>{userData?.data?.height}m</div>
           </li>
+          <li key="height" className="flex flex-col items-center justify-between"> <Link to="/stats"> 
+          <span class="icon-[iconoir--stats-down-square]"><svg clasName="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16V8m4 8v-5m4 5v-3"/><path d="M3 20.4V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6v16.8a.6.6 0 0 1-.6.6H3.6a.6.6 0 0 1-.6-.6Z"/></g></svg></span>           
+          </Link> <div>stats</div>
+          </li>
         </>
       </ul>
       <div className="p-4 border-t mx-8 mt-2">
@@ -97,3 +101,4 @@ const ProfileCard = () => {
 };
 
 export default ProfileCard;
+
