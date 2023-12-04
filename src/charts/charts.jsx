@@ -40,7 +40,7 @@ const LinesChart = ({ userId }) => {
         const fetchWeeklyData = async () => {
             try {
                 
-                const response = await fetch(`http://localhost:3007/api/v1/exercise/list`);
+                const response = await fetch(`https://muscles.entranat.site/muscle/list`);
                 const data = await response.json();
                 const storedUser = localStorage.getItem('authenticatedUser');
   
@@ -70,7 +70,7 @@ const LinesChart = ({ userId }) => {
 
         const fetchMonthlyData = async () => {
             try {
-                const response = await fetch(`http://localhost:3007/api/v1/exercise/list`);
+                const response = await fetch(`https://muscles.entranat.site/muscle/list`);
                 const data = await response.json();
 
                 // Filtrar los ejercicios por el ID de usuario proporcionado y una semana

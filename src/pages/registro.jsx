@@ -68,7 +68,7 @@ export default function Register() {
         try {
             console.log('Form Data:', requestData);
 
-            const response = await fetch('http://localhost:3006/api/v1/register/', {
+            const response = await fetch('https://users.entranat.site/register/', {
                 method: 'POST',
                 type: 'cors',
                 headers: {

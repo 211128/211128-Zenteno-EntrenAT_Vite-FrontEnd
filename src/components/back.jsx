@@ -48,7 +48,7 @@ const parsedUser = JSON.parse(storedUser);
         (parseFloat(remopolea) + parseFloat(remobarra) + parseFloat(jalonpecho) + parseFloat(pullover) + parseFloat(dominadas)) /
         totalInputs;
 
-      const response = await fetch('http://localhost:3007/api/v1/exercise/add', {
+      const response = await fetch('https://muscles.entranat.site/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -47,7 +47,7 @@ const Muscles = () => {
       const totalInputs = 5; // Número de campos en el formulario
       const averageWeight = (parseFloat(press) + parseFloat(pressinclinada) + parseFloat(pressmancuerna) + parseFloat(pressaperturas) + parseFloat(presspolea)) / totalInputs;
 
-      const response = await fetch('http://localhost:3007/api/v1/exercise/add', {
+      const response = await fetch('https://muscles.entranat.site/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ const ProfileCard = () => {
         
   
         // Añadir la ID del usuario a la URL
-        const url = `http://localhost:3006/api/v1/${parsedUser.data.id}`;
+        const url = `https://users.entranat.site/${parsedUser.data.id}`;
   
         // Realizar la solicitud GET utilizando la URL actualizada
         const response = await fetch(url);
